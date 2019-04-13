@@ -45,7 +45,6 @@ public class PersonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("gets into doGet");
-		String path = request.getServletPath();
 		String urlString = request.getQueryString();
 		List<Persons> pList = new ArrayList<Persons>();
 		if(urlString != null) {
