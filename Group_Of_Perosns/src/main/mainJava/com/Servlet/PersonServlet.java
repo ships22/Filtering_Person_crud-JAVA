@@ -3,6 +3,7 @@ import com.DAO.PersonDao;
 import com.Entity.*;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,10 +129,21 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
+		String firstName  = request.getParameter("firstName");
+		String lastName   = request.getParameter("lastName");
+		String address    = request.getParameter("address");
+		String profession = request.getParameter("profession");
+		String mSt 		  = request.getParameter("mSt");
+		int children   = (parseInt).request.getParameter("children");
+		String dob   = request.getParameter("dob");
+		
+		System.out.println(dob);
+		//Creating personObject in DB -
+		dao.createPerson(firstName, lastName, address, profession, mSt, children, new Date(dob));
+		
+		doGet(request, response);
 		}
-		//doGet(request, response);
 	}
 
 

@@ -14,14 +14,13 @@
     	<body>
     		<div class="main">
     			<header>
-    				<h1>Group of Person</h1>
+    				<h1>Group of Persons</h1>
     				<nav>
     					<ul>
     						<li><a href="PersonServlet">Home</a></li>
-    						<li><a href="#">Add person</a></li>
+    						<li><a href="addPerson.jsp">Add person</a></li>
     						<li><a href="#">Edit person</a></li>
     					</ul>
-<!--     					<button onclick="window.location.href = './index.jsp'">here it the button</button> -->
     				</nav>
     			</header>
     			<div class="container">
