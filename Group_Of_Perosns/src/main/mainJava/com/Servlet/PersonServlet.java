@@ -5,6 +5,7 @@ import com.Entity.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -130,14 +131,15 @@ public class PersonServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String firstName  = request.getParameter("firstName");
-		String lastName   = request.getParameter("lastName");
-		String address    = request.getParameter("address");
-		String profession = request.getParameter("profession");
-		String mSt 		  = request.getParameter("mSt");
-		int children   = (parseInt).request.getParameter("children");
-		String dob   = request.getParameter("dob");
-		
+		String firstName  	 = request.getParameter("firstName");
+		String lastName   	 = request.getParameter("lastName");
+		String address    	 = request.getParameter("address");
+		String profession 	 = request.getParameter("profession");
+		String mSt 		  	 = request.getParameter("mSt");
+		String childrenStr   = request.getParameter("children");
+		int 	children  	 = Integer.parseInt(childrenStr);	
+		String dobStr   	 = request.getParameter("dob");
+		Date dob			 = SimpleDateFormat.parse(dobStr);
 		System.out.println(dob);
 		//Creating personObject in DB -
 		dao.createPerson(firstName, lastName, address, profession, mSt, children, new Date(dob));
