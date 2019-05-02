@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>com.Servlet.PersonServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>editPerson</servlet-name>
+  	<display-name>editPerson</display-name>
+  	<description></description>
+  	<servlet-class>com.Servlet.editPerson</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>PersonServlet</servlet-name>
   	<url-pattern>/PersonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>editPerson</servlet-name>
+  	<url-pattern>/editPerson</url-pattern>
   </servlet-mapping>
 </web-app>

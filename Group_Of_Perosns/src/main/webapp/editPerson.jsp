@@ -26,10 +26,12 @@
     			<div class="container">
     				<h3>Edit details</h3>
     				<div class="edit_details">
-    					<form action="PersonServlet" method="POST">
+    					<form action="editPerson" method="POST">
+    						
+    							<% String strValue = (String)request.getAttribute("id_Str"); %>
+    						
     						<section class="left">
-    							
-    							<input type="number" value="<%= person.getId();%>">
+    							<input type="hidden" name="id_edit" value="<%=strValue %>">
     							<label>First name : </label>
     							<input type="text" id="firstName" name="firstName" required value="ships">
     							<label>Last name : </label>
@@ -48,7 +50,7 @@
 		    					<input type="radio" name="mSt" value="married">Married
 		    					<br>
 		    					<label>Date of birth : </label>
-		    					<input type="date" name="dob">
+		    					<input type="date" name="dob" required>
     						</section>
     						<button type="submit">Submit</button>
     					</form>

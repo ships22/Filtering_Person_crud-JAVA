@@ -57,6 +57,10 @@
     												<input type="hidden" name="id_delete" value="<%= person.getId()%>">
     												<button class="btn_delete" type="submit">Delete</button>
     											</form>
+    											<form method="get" action="PersonServlet">
+    												<input type="hidden" name="id_edit" value="<%= person.getId()%>">
+    												<button class="btn_edit" type="submit">Edit</button>
+    											</form>
     										</td>
     									</tr>			
     								<%}%>

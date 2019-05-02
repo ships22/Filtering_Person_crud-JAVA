@@ -131,7 +131,12 @@ public class PersonServlet extends HttpServlet {
 								
 							} catch(SQLException e) {
 								e.printStackTrace();
-							}
+							} break;
+						case "id_edit":
+							String id_edit  = entry.getValue();
+							request.setAttribute("id_Str", id_edit);	
+							request.getRequestDispatcher("editPerson.jsp").forward(request, response);
+							break;
 					}
 					pList.clear();
 				}
@@ -149,9 +154,9 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("do post...");
 		
+		System.out.println("do post...");
+		String id_edit  = request.getParameter("id_edit");
 		String firstName  	 = request.getParameter("firstName");
 		String lastName   	 = request.getParameter("lastName");
 		String address    	 = request.getParameter("address");
@@ -161,13 +166,18 @@ public class PersonServlet extends HttpServlet {
 		int    children  	 = Integer.parseInt(childrenStr);	
 		String dobStr   	 = request.getParameter("dob");
 		Date   dob           = Date.valueOf(dobStr);
-		try {
-			dao.createPerson(firstName, lastName, address, profession, mSt, children, dob);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		doGet(request, response);
-		}
+		
+			System.out.println(id_edit);
+			if(id_edit == null) {
+				try {
+					dao.createPerson(firstName, lastName, address, profession, mSt, children, dob);
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			doGet(request, response);
+			}
+		
 	}
 
 
