@@ -19,7 +19,7 @@
     					<ul>
     						<li><a href="PersonServlet">Home</a></li>
     						<li><a href="addPerson.jsp">Add person</a></li>
-    						<li><a href="#">Edit person</a></li>
+    						
     					</ul>
     				</nav>
     			</header>
@@ -35,6 +35,7 @@
     							<th>Children</th>
     							<th>Maritial st</th>
     							<th>Version</th>
+    							<th>Edit/Delete</th>
     						</tr>
     					</thead>
     					<tbody>
@@ -51,6 +52,12 @@
     										<td><%= person.getChildren() %></td>
     										<td><%= person.getMaritital_st() %></td>
     										<td><%= person.getNb_edition() %></td>
+    										<td>
+    											<form method="get" action="PersonServlet">
+    												<input type="hidden" name="id_delete" value="<%= person.getId()%>">
+    												<button class="btn_delete" type="submit">Delete</button>
+    											</form>
+    										</td>
     									</tr>			
     								<%}%>
     							<%}%>

@@ -19,12 +19,12 @@
     					<ul>
     						<li><a href="PersonServlet">Home</a></li>
     						<li><a href="addPerson.jsp">Add person</a></li>
-    						<li><a href="#">Edit person</a></li>
+    						
     					</ul>
     				</nav>
     			</header>
     			<div class="container">
-    				<h3>Person List</h3>
+    				<h3>Filtered Person List</h3>
     				<table>
     					<thead>
     						<tr>

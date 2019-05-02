@@ -30,6 +30,7 @@ public class PersonDao {
 	//Creating peroson -
 	public void createPerson(String firstName, String lastName, String address, String profession, String mar_st, int children, Date dob) throws SQLException{
 		PreparedStatement ps = connection.prepareStatement(CREATE);
+		ps.clearParameters();
 		ps.setString(1, firstName);
 		ps.setString(2, lastName);
 		ps.setString(3, address);
@@ -46,8 +47,9 @@ public class PersonDao {
 		List<Persons> personsList = new ArrayList<Persons>();
 		PreparedStatement ps = connection.prepareStatement(GET_ALL);
 		ResultSet rs		 = ps.executeQuery();
+		personsList.clear();
 		while(rs.next()) {
-			personsList.add(buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9)));
+			personsList.add(buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9)));
 		}
 //		connection.close();
 		return personsList;
@@ -59,7 +61,7 @@ public class PersonDao {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 //		connection.close();
-		return buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
+		return buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9));
 	}
 	//Getting person by firstName -
 	public List<Persons> getByFirstName(String firstName) throws SQLException {
@@ -68,7 +70,7 @@ public class PersonDao {
 		ps.setString(1, firstName);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			Persons p = buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
+			Persons p =  buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9));
 			listedFname.add(p);
 		}
 		return listedFname;
@@ -81,7 +83,7 @@ public class PersonDao {
 		ps.setString(1, lastName);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			Persons p = buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
+			Persons p = buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9));
 			listedLname.add(p);
 		}
 		return listedLname;
@@ -94,7 +96,7 @@ public class PersonDao {
 		ps.setString(1, mrSt);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			Persons p = buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
+			Persons p = buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9));
 			listedMst.add(p);
 		}
 		return listedMst;
@@ -107,7 +109,7 @@ public class PersonDao {
 		ps.setInt(1, children);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			Persons p = buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
+			Persons p = buildPerson(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getInt(8), rs.getInt(9));
 			listedChld.add(p);
 		}
 		return listedChld;
@@ -123,7 +125,7 @@ public class PersonDao {
 //		return buildPerson(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8), rs.getInt(9));
 //	}
 	//Building person obeject -
-	private Persons buildPerson(int id, String firstName, String lastName, String address, String profession, String mar_st, int children, Date dob, int nb_edition) {
+	private Persons buildPerson(String firstName, String lastName, String address, String profession, String mar_st, int children, Date dob, int nb_edition, int id) {
 		return new Persons(id, firstName, lastName, address, profession, mar_st, children, dob, nb_edition);
 	}
 	//Update - 

@@ -24,10 +24,12 @@
     				</nav>
     			</header>
     			<div class="container">
-    				<h3>Add details</h3>
-    				<div class="add_details">
+    				<h3>Edit details</h3>
+    				<div class="edit_details">
     					<form action="PersonServlet" method="POST">
     						<section class="left">
+    							
+    							<input type="number" value="<%= person.getId();%>">
     							<label>First name : </label>
     							<input type="text" id="firstName" name="firstName" required value="ships">
     							<label>Last name : </label>

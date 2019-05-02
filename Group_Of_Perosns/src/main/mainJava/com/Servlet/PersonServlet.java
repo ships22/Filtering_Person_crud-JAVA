@@ -4,7 +4,10 @@ import com.Entity.*;
 
 import java.io.IOException;
 import java.sql.Date;
+//import java.sql.Date;
 import java.sql.SQLException;
+//import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +33,6 @@ public class PersonServlet extends HttpServlet {
      */
     public PersonServlet() {
         super();
-    
     }
     
     @Override
@@ -47,6 +49,8 @@ public class PersonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("gets into doGet");
+		String path = request.getServletPath();
+		init();
 		String urlString = request.getQueryString();
 		List<Persons> pList = new ArrayList<Persons>();
 		if(urlString != null) {
@@ -115,13 +119,28 @@ public class PersonServlet extends HttpServlet {
 							} catch (SQLException e) {
 								e.printStackTrace();
 							} break;
+							
+						case "id_delete":
+							String id_delete  = entry.getValue();
+							int id_delete_int = Integer.parseInt(id_delete);
+							try {
+								dao.deletePerson(id_delete_int);
+								init();
+								request.setAttribute("personsList", personsList);
+								request.getRequestDispatcher("index.jsp").forward(request, response);
+								
+							} catch(SQLException e) {
+								e.printStackTrace();
+							}
 					}
 					pList.clear();
 				}
-			} else {
+			} else if(path.equals("/PersonServlet")) {
+				
+				System.out.println(path);
 				request.setAttribute("personsList", personsList);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-				System.out.println("else");
+				System.out.println("else if");
 			}	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -130,6 +149,8 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		System.out.println("do post...");
 		
 		String firstName  	 = request.getParameter("firstName");
 		String lastName   	 = request.getParameter("lastName");
@@ -137,13 +158,14 @@ public class PersonServlet extends HttpServlet {
 		String profession 	 = request.getParameter("profession");
 		String mSt 		  	 = request.getParameter("mSt");
 		String childrenStr   = request.getParameter("children");
-		int 	children  	 = Integer.parseInt(childrenStr);	
+		int    children  	 = Integer.parseInt(childrenStr);	
 		String dobStr   	 = request.getParameter("dob");
-		Date dob			 = SimpleDateFormat.parse(dobStr);
-		System.out.println(dob);
-		//Creating personObject in DB -
-		dao.createPerson(firstName, lastName, address, profession, mSt, children, new Date(dob));
-		
+		Date   dob           = Date.valueOf(dobStr);
+		try {
+			dao.createPerson(firstName, lastName, address, profession, mSt, children, dob);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		doGet(request, response);
 		}
 	}
