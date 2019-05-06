@@ -29,26 +29,29 @@
     					<form action="PersonServlet" method="POST">
     						<section class="left">
     							<label>First name : </label>
-    							<input type="text" id="firstName" name="firstName" required value="ships">
+    							<input type="text" id="firstName" name="firstName" required placeholder="Ex: Ships">
     							<label>Last name : </label>
-    							<input type="text" id="lastName" name="lastName" required value="haq">
+    							<input type="text" id="lastName" name="lastName" required placeholder="Ex: Haq">
     							<label>Address : </label>
-    							<input type="text" id="address" name="address" required value="test">
+    							<input type="text" id="address" name="address" required placeholder="Ex: 18 Rue kleber, 93100, Montrueil">
+    							<label>Profession : </label>
+    							<input type="text" id="profession" name="profession" required placeholder="Ex: Developper Java / JS">
     						</section>
     						<section class="right">
-    							<label>Profession : </label>
-    							<input type="text" id="profession" name="profession" required value="dev">
     							<label>Number of children : </label>
-    							<input type="number" id="children" name="children" required value="0">
+    							<input type="number" id="children" name="children" required placeholder="Ex: 3">
     							<label>Select marital status : </label>
-		    					<input type="radio" name="mSt" value="single" checked>Single
-		    					<br>
-		    					<input type="radio" name="mSt" value="married">Married
+		    					<div class="radioEdit">
+		    						Single
+			    					<input type="radio" name="mSt" value="single" checked>
+			    					Married
+			    					<input type="radio" name="mSt" value="married">
+		    					</div>
 		    					<br>
 		    					<label>Date of birth : </label>
-		    					<input type="date" name="dob">
+		    					<input type="date" name="dob" required placeholder="YYYY-MM-DD">
     						</section>
-    						<button type="submit">Submit</button>
+    						<button type="submit" class="addDetails">Submit</button>
     					</form>
     				</div>
     			</div>

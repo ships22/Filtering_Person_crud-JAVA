@@ -45,8 +45,8 @@
     								for(int i = 0; i < personsList.size(); i++){
     									Persons person = personsList.get(i);%>
     									<tr>
-    										<td><%= person.getFirstName() %></td>
-    										<td><%= person.getLastName() %></td>
+    										<td><%= person.getFirstName().toUpperCase() %></td>
+    										<td><%= person.getLastName().toUpperCase() %></td>
     										<td><%= person.getAddress() %></td>
     										<td><%= person.getProfession() %></td>
     										<td><%= person.getChildren() %></td>
@@ -54,12 +54,12 @@
     										<td><%= person.getNb_edition() %></td>
     										<td>
     											<form method="get" action="PersonServlet">
-    												<input type="hidden" name="id_delete" value="<%= person.getId()%>">
-    												<button class="btn_delete" type="submit">Delete</button>
-    											</form>
-    											<form method="get" action="PersonServlet">
     												<input type="hidden" name="id_edit" value="<%= person.getId()%>">
     												<button class="btn_edit" type="submit">Edit</button>
+    											</form>
+    											<form method="get" action="PersonServlet">
+    												<input type="hidden" name="id_delete" value="<%= person.getId()%>">
+    												<button class="btn_delete" type="submit">Delete</button>
     											</form>
     										</td>
     									</tr>			
@@ -72,33 +72,34 @@
     					<form action="PersonServlet" method="get">
     						<div class="inputs">
 		    					<label>Get by Id :</label>
-		    					<input type="number" name="id" id="id">
+		    					<input type="number" name="id" id="id" required>
 		    				</div>
 		    				<br>
 		    				<button type="submit">Submit</button>
     					</form>
     					<form action="PersonServlet" method="get">
     						<div class="inputs">
-		    					<label>Get by FirstName :</label>
-		    					<input type="text" name="fName" id="fName">
+		    					<label>Get by First Name :</label>
+		    					<input type="text" name="fName" id="fName" required>
 		    				</div>
 		    				<br>
 		    				<button type="submit">Submit</button>
     					</form>
     					<form action="PersonServlet" method="get">
     						<div class="inputs">
-		    					<label>Get by LasttName :</label>
-		    					<input type="text" name="lName" id="lName">
+		    					<label>Get by Last Name :</label>
+		    					<input type="text" name="lName" id="lName" required>
 		    				</div>
 		    				<br>
 		    				<button type="submit">Submit</button>
     					</form>
     					<form action="PersonServlet" method="get">
-    						<div class="inputs">
-		    					<label>Get by Maritial St :</label>
-		    					<input type="radio" name="mSt" value="single">Single
-		    					<br>
-		    					<input type="radio" name="mSt" value="married">Married
+    						<div class="inputs radio">
+		    						<label>Get by Mr St :</label>
+		    						<span>Single</span>
+			    					<input type="radio" name="mSt" value="single" checked> 
+		    						<span>Married</span>
+		    						<input type="radio" name="mSt" value="married"> 
 		    				</div>
 		    				<br>
 		    				<button type="submit">Submit</button>
@@ -106,7 +107,7 @@
     					<form action="PersonServlet" method="get">
     						<div class="inputs">
 		    					<label>Get by Children :</label>
-		    					<input type="number" name="chld" id="chld">
+		    					<input type="number" name="chld" id="chld" required>
 		    				</div>
 		    				<br>
 		    				<button type="submit">Submit</button>

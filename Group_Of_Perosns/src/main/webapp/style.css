@@ -7,6 +7,8 @@
 body {
 	background: #73fdff;
 	font-family: sans-serif;
+	height: 100%;
+	width: 100%;
 }
 
 	/**************************************
@@ -24,8 +26,8 @@ header {
 header h1 {
 	flex-grow: 1;
 	text-align: center;
-	font-size: 60px;
-	line-height: 120px;
+	font-size: 80px;
+	line-height: 140px;
 }
 nav {
 	box-shadow: 0px 1px 10px -2px rgba(0,0,0,0.63);
@@ -65,9 +67,6 @@ nav ul li:hover {
 div.container {
 	width: 90%;
 	margin: 0 auto;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
 }
 div.container h3 {
 	text-align: center;
@@ -76,18 +75,28 @@ div.container h3 {
 	color: white;
 	padding: 20px;
 	width: 100%;
+	margin-bottom: 10px;
+	display: block;
+	border: 10px solid #005b69;
 }
 table {
-	width: 65%;
-	overflow: scroll;
-	margin-top: 2px;
-	height: 200px;
+	display: inline-block;
+	float: left;
+	width: 70%;
+	height: 700px;
+	overflow-y: scroll;
+	position: relative;
+	border: 10px solid #005b69;
 	margin-bottom: 50px;
+}
+table.filtered {
+	display: table;
+	min-width: 100%;
+	height: 300px;
 }
 table thead tr th{
 	background: #006777;
 	color: white;
-	font-family: 
 }
 table thead tr th:nth-child(odd){
 	background: #004d5a;
@@ -112,24 +121,148 @@ tbody tr td:nth-child(even){
 table, tr, td {
 	border-collapse: collapse;
 }
-
+table button.btn_edit, table button.btn_delete {
+	height: 30px;
+	width: 80px;
+	margin: 5px;
+	outline: none;
+	border-radius: 3px;
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 15px;
+	transition: .5s;
+}
+table button.btn_edit {
+	background: #3399ff;
+}
+table button.btn_delete {
+	background: red;
+}
+table button.btn_edit:hover {
+	background: #1b5faa;
+	cursor: pointer;
+}
+table button.btn_delete:hover {
+	background: #ab0001;
+	cursor: pointer;
+}
 	/**************************************
 					 filter
 	**************************************/
 div.filter {
-	border: 1px solid white;
-	width: 33%;
-	margin-top: 2px;
+	float:right;
+	width: 29%;
+	display: inline-block;
+	border: 10px solid #005b69;
+	height: 700px;
 }
 div.filter h3 {
 	padding: 15px;
+	border: none;
+	margin-bottom: 0;
 }
 div.filter form {
-	margin-top: 30px;
-	padding: 20px;
+	height: 115px;
+	width: 100%;
+	border-bottom: 2px solid gray;
+}
+div.filter form button {
+	margin-left: 10%;
+	height: 30px;
+	width: 85%;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	background: #3399ff;
+	font-size: 16px;
+	color: white;
+	transition: .5s;
+}
+div.filter form button:hover {
+	background: #2674d7;
+	cursor: pointer;
 }
 div.inputs {
+	margin-left: 10%;
+	padding: 10px 20px 0px 0px;
+}
+.inputs input {
+	width: 100%;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid white;
+	padding: 5px;
+	font-size: 14px;
+}
+.inputs label {
+	font-size: 18px;
+}
+
+.radio label {
+	width: 100%;
+	margin-bottom: 10px;
+	float:left;
+}
+.radio input {
+	width: 20px;
+}
+.radio span:nth-child(4){
+	margin-left: 60px;
+}
+.radio input{
+	font-size: 20px;
+}
+	/**************************************
+					 edit
+	**************************************/
+div.edit_details, div.add_details {
+	float:right;
+	width: 100%;
+	display: inline-block;
+	border: 10px solid white;
+	height: 325px;
+	margin-bottom: 80px;
+}
+section.left, section.right {
+	width: 50%;
+	float: left;
+	padding: 20px;
 	display: flex;
+	flex-direction: column;
+}
+section.left {
+	border-right: 2px solid white;
+}
+section.left label, section.left input, section.right label, section.right input {
+	margin-bottom: 10px;
+}
+.radioEdit input:nth-child(1){
+	margin-right: 30px;
+}
+section.left input, section.right input{
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid white;
+	padding: 5px;
+	font-size: 14px;
+}
+div.edit_details form button, button.addDetails {
+	margin-left: 10%;
+	height: 30px;
+	width: 30%;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	background: #3399ff;
+	font-size: 16px;
+	color: white;
+	transition: .5s;
+}
+
+div.edit_details form button:hover, button.addDetails:hover {
+	background: #2674d7;
+	cursor: pointer;
 }
 	/**************************************
 					 footer

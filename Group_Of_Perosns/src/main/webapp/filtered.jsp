@@ -25,7 +25,7 @@
     			</header>
     			<div class="container">
     				<h3>Filtered Person List</h3>
-    				<table>
+    				<table class="filtered">
     					<thead>
     						<tr>
     							<th>First Name</th>
@@ -35,6 +35,7 @@
     							<th>Children</th>
     							<th>Maritial st</th>
     							<th>Version</th>
+    							<th>Edit/Delete</th>
     						</tr>
     					</thead>
     					<tbody>
@@ -51,6 +52,16 @@
     										<td><%= person.getChildren() %></td>
     										<td><%= person.getMaritital_st() %></td>
     										<td><%= person.getNb_edition() %></td>
+    										<td>
+    											<form method="get" action="PersonServlet">
+    												<input type="hidden" name="id_edit" value="<%= person.getId()%>">
+    												<button class="btn_edit" type="submit">Edit</button>
+    											</form>
+    											<form method="get" action="PersonServlet">
+    												<input type="hidden" name="id_delete" value="<%= person.getId()%>">
+    												<button class="btn_delete" type="submit">Delete</button>
+    											</form>
+    										</td>
     									</tr>			
     								<%}%>
     							<%}%>	
